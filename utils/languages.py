@@ -1,5 +1,4 @@
 LANGUAGE_DICTIONARY = {
-    "Font Files": ['.eot', '.ttf', '.woff', '.woff2'],
     "Prettier Config": ['.prettierrc'],
     "1C Enterprise": ['.bsl', '.os'],
     "ABAP": ['.abap'],

@@ -26,7 +26,8 @@ class JuniorAgent:
                 contributing foundational diagrams using Mermaid syntax. Working closely with Senior Developers, 
                 the Junior Developer upholds project standards and provides valuable insights to strengthen the codebase."""
             ),
-            llm="openrouter/deepseek/deepseek-chat",
+            llm="openrouter/google/gemini-flash-1.5",
+            verbose= True,
             )
 
     def create_tasks(self) -> List[Task]:
