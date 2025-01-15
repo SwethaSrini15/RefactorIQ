@@ -3,8 +3,9 @@ from typing import Dict, List
 from agents.senior_agent import SeniorAgent
 from utils.file_utils import extract_zip, cleanup_directory
 from utils.analysis_utils import analyze_folder
-from docx import Document
 import asyncio
+import os
+import md2docx
 
 class SuperSeniorAgent:
     def __init__(self):
@@ -90,15 +91,27 @@ class SuperSeniorAgent:
         return output.content if hasattr(output, 'content') else str(output)
 
     def save_to_docx(self, output):
-        doc = Document()
-        doc.add_heading('Final Technical Documentation', level=1)
+        # First create markdown content
+        md_content = "# Final Technical Documentation\n\n"
         if hasattr(output, 'content'):
-            doc.add_paragraph(output.content)
+            md_content += output.content
         else:
-            doc.add_paragraph(str(output))
-
+            md_content += str(output)
+            
+        # Save markdown content to temporary file
+        md_path = 'technical_documentation.md'
+        docx_path = 'Final technical document.docx'
+        
         try:
-            doc.save('technical_documentation.docx')
+            # Write markdown content
+            with open(md_path, 'w') as f:
+                f.write(md_content)
+            
+            # Convert markdown to docx
+            md2docx.convert_file(md_path, docx_path)
+            
+            # Clean up temporary markdown file
+            os.remove(md_path)
             print("Technical documentation created successfully.")
         except Exception as e:
             print(f"An error occurred while saving the document: {e}")

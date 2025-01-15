@@ -26,8 +26,8 @@ class JuniorAgent:
                 contributing foundational diagrams using Mermaid syntax. Working closely with Senior Developers, 
                 the Junior Developer upholds project standards and provides valuable insights to strengthen the codebase."""
             ),
-            llm="openrouter/google/gemini-flash-1.5",
-            verbose= True,
+            llm="openrouter/anthropic/claude-3.5-sonnet",
+            # verbose= True,
             )
 
     def create_tasks(self) -> List[Task]:
